@@ -1,59 +1,80 @@
 # PessoasApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+Este projeto foi gerado utilizando o [Angular CLI](https://github.com/angular/angular-cli) versão 19.2.9 para o frontend, com uma API em **.NET** para o backend.
 
-## Development server
+## 📋 Instruções para execução do projeto
 
-To start a local development server, run:
+### 1. 🖥️ Configuração do Backend (API - PessoasApi)
 
+O backend foi desenvolvido em **.NET** e é responsável por fornecer as APIs que o frontend consome.
+
+#### 🔧 Pré-requisitos:
+- [.NET SDK](https://dotnet.microsoft.com/download) (versão 6.0 ou superior)
+- Editor de código ([Visual Studio](https://visualstudio.microsoft.com/) ou [VS Code](https://code.visualstudio.com/))
+
+#### 🚀 Configuração e execução:
+1. Navegue até a pasta do projeto da API
+2. Execute:
 ```bash
+dotnet run
+A API estará disponível em:
+🔗 http://localhost:5215
+📚 Documentação Swagger: http://localhost:5215/swagger
+
+⚙️ Exemplo de launchSettings.json:
+json
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "PessoasApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5215",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+2. 💻 Configuração do Frontend (PessoasApp)
+Frontend desenvolvido em Angular.
+
+🔧 Pré-requisitos:
+Node.js (versão 14+)
+
+Angular CLI (instalar globalmente):
+
+bash
+npm install -g @angular/cli
+📦 Instalação:
+Na pasta do frontend, execute:
+
+bash
+npm install
+🚀 Execução:
+bash
 ng serve
-```
+A aplicação estará disponível em:
+🌐 http://localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+🔄 O servidor de desenvolvimento recarrega automaticamente ao modificar arquivos fonte.
 
-## Code scaffolding
+🔗 Conexão Frontend-Backend
+Certifique-se que:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+A API está rodando antes de iniciar o frontend
 
-```bash
-ng generate component component-name
-```
+As URLs de API no frontend apontam para http://localhost:5215
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+🛠️ Estrutura do Projeto
+PessoasApp/
+├── backend/      # API .NET
+└── frontend/     # Aplicação Angular
+ℹ️ Suporte
+Para problemas de configuração, consulte a documentação oficial:
 
-```bash
-ng generate --help
-```
+Angular CLI
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+.NET Documentation
