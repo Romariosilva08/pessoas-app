@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-content>
+    <div class="filtro-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Filtrar por nome</mat-label>
+        <input matInput [(ngModel)]="filtroNome" (keyup.enter)="aplicarFiltro()">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="aplicarFiltro()" class="filter-button">
+        <mat-icon>search</mat-icon> Filtrar
+      </button>
+
+      <button mat-raised-button color="accent" (click)="loadPessoas()" class="load-button">
+        <mat-icon>refresh</mat-icon> Carregar Dados
+      </button>
+    </div>
+
+    <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
+
+    <div class="table-container" *ngIf="!isLoading">
+      <div *ngIf="pessoas.length === 0" class="no-data-message">
+        Nenhuma pessoa encontrada.
+      </div>
+
+      <table mat-table [dataSource]="pessoas" class="mat-elevation-z8">
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.cpf }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="genero">
+          <th mat-header-cell *matHeaderCellDef>Gênero</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.genero }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="endereco">
+          <th mat-header-cell *matHeaderCellDef>Endereço</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.endereco }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idade">
+          <th mat-header-cell *matHeaderCellDef>Idade</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.idade }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="municipio">
+          <th mat-header-cell *matHeaderCellDef>Município</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.municipio }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let pessoa">{{ pessoa.estado }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator *ngIf="pessoas.length > 0" [length]="totalItems" [pageSize]="pageSize"
+        [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 15]" (page)="onPageChange($event)" showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+  </mat-card-content>
+</mat-card>
