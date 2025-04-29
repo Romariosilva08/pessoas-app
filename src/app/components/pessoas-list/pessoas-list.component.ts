@@ -66,6 +66,12 @@ export class PessoasListComponent implements OnInit {
       next: (response) => {
         this.pessoas = response.items;
         this.totalItems = response.totalRecords;
+
+        const totalPages = Math.ceil(this.totalItems / this.pageSize);
+        if (page > totalPages) {
+          this.pageIndex = totalPages - 1;
+        }
+        
         this.isLoading = false;
 
         this.snackBar.open('Pessoas carregadas com sucesso!', 'Fechar', { duration: 3000 });
@@ -83,7 +89,7 @@ export class PessoasListComponent implements OnInit {
 
   onPageChange(event: PageEvent) {
     this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex + 1;
+    this.pageIndex = event.pageIndex;
     this.loadPessoas();
   }
 
